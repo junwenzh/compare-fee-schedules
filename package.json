@@ -1,0 +1,25 @@
+{
+  "name": "typescript-template",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "vitest",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "build": "tsc",
+    "ci": "npm run lint && npm run test && npm run build"
+  },
+  "keywords": [],
+  "author": "Jun",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.4"
+  }
+}
