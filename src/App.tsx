@@ -91,14 +91,16 @@ function App() {
           </a>
         </Button>
       )}
-      {downloadUrl && (
-        <CountsTable
-          rows={Object.entries(counts).map(([k, v]) => ({
-            label: k,
-            value: String(v),
-          }))}
-        />
-      )}
+      <section className="w-72">
+        {downloadUrl && (
+          <CountsTable
+            rows={Object.entries(counts).map(([k, v]) => ({
+              label: k,
+              value: String(v),
+            }))}
+          />
+        )}
+      </section>
     </main>
   );
 }

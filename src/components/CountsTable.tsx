@@ -16,7 +16,7 @@ type CountsTableProps = {
 
 export default function CountsTable({ rows }: CountsTableProps) {
   return (
-    <Table className="w-72">
+    <Table>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Type</TableHead>
