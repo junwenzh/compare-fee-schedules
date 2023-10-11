@@ -12,7 +12,8 @@ export type QnxtOutputFormat = [
   'provtype' | '',
   'specialtycode' | '',
   'typesrv' | '',
-  'modcode2' | ''
+  'modcode2' | '',
+  'actoin' | string
 ];
 
 export interface QnxtInputFormat {

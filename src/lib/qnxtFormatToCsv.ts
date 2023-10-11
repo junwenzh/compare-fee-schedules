@@ -21,6 +21,7 @@ export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
     '', // specialty
     '', // typesrv
     '', // modcode2
+    input.action || '',
   ];
 }
 
@@ -46,6 +47,7 @@ function qnxtOutputToCsv(array: QnxtOutputFormat[]) {
     'specialtycode',
     'typesrv',
     'modcode2',
+    'action',
   ];
   return headers.join(',').concat('\n', csv);
 }
