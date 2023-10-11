@@ -1,6 +1,6 @@
 import { QnxtInputFormat, QnxtOutputFormat } from '@/types/QnxtFormat';
 
-function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
+export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
   const effective = `${input.effective.slice(0, 4)}-${input.effective.slice(
     4,
     6
@@ -53,7 +53,11 @@ function qnxtOutputToCsv(array: QnxtOutputFormat[]) {
 export function inputMapToCsv(map: Map<string, QnxtInputFormat>): string {
   const output: QnxtOutputFormat[] = [];
   map.forEach(v => {
-    output.push(qnxtInputToOutput(v));
+    try {
+      output.push(qnxtInputToOutput(v));
+    } catch (e) {
+      console.log('error', v);
+    }
   });
   const csv = qnxtOutputToCsv(output);
   return csv;
