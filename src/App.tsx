@@ -85,8 +85,10 @@ function App() {
         </Button>
       )}
       {downloadUrl && (
-        <Button variant="outline">
-          <a href={downloadUrl}>Download Output</a>
+        <Button variant="outline" className="my-4">
+          <a href={downloadUrl} download="output.csv">
+            Download Output
+          </a>
         </Button>
       )}
       {downloadUrl && (
