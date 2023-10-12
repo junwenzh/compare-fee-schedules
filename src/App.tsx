@@ -9,8 +9,21 @@ import { inputMapToCsv } from './lib/qnxtFormatToCsv';
 import { createBlobUrl } from './lib/createBlobUrl';
 import { getCounts } from './lib/getCounts';
 import CountsTable from './components/CountsTable';
+import { SelectSource } from './components/SelectSource';
+
+const sourceTypes = [
+  {
+    label: 'Code, mod1, POS',
+    value: 'code',
+  },
+  {
+    label: 'Magnacare',
+    value: 'magnacare',
+  },
+];
 
 function App() {
+  const [sourceType, setSourceType] = useState('');
   const [srcPath, setSrcPath] = useState('');
   const [qnxtPath, setQnxtPath] = useState('');
   const [srcData, setSrcData] = useState('');
@@ -46,8 +59,22 @@ function App() {
     }
   }
 
+  function handleSelectChange(value: string) {
+    setSourceType(value);
+  }
+
   function handleCompareClick() {
-    const src = magnacareToQnMap(srcData);
+    let src;
+    switch (sourceType) {
+      case 'magnacare':
+        src = magnacareToQnMap(srcData);
+        break;
+      case 'code':
+        src = qnxtToMap(srcData);
+        break;
+      default:
+        return;
+    }
     const qnxt = qnxtToMap(qnxtData);
     const result = compareFeeSchedules(src, qnxt);
     const resultCounts = getCounts(result);
@@ -65,6 +92,11 @@ function App() {
 
   return (
     <main className="flex flex-col justify-center items-center">
+      <header className="my-8"></header>
+      <SelectSource
+        handleSelectChange={handleSelectChange}
+        choices={sourceTypes}
+      />
       <Dropzone
         id="srcFile"
         title="Source File"

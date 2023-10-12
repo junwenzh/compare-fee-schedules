@@ -8,17 +8,18 @@ export type QnxtOutputFormat = [
   'termdate' | '2078-12-31',
   'maxcodeid' | string,
   'feeamount' | string,
-  'locationcode' | '',
+  'locationcode' | string,
   'provtype' | '',
   'specialtycode' | '',
   'typesrv' | '',
   'modcode2' | '',
-  'actoin' | string
+  'action' | string
 ];
 
 export interface QnxtInputFormat {
   cpt: string;
   mod: string;
+  pos: string;
   fee: string;
   effective: string;
   terminate: string;

@@ -8,7 +8,7 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
 
   lines.forEach(line => {
     const cells = stringToInputFormat(line);
-    const key = `${cells.cpt}_${cells.mod}`;
+    const key = `${cells.cpt}_${cells.mod}_${cells.pos}`;
     map.set(key, cells);
   });
 
@@ -20,8 +20,9 @@ function stringToInputFormat(text: string): QnxtInputFormat {
   return {
     cpt: cells[0],
     mod: cells[1],
-    fee: cells[2],
-    effective: cells[3],
-    terminate: cells[4],
+    pos: cells[2],
+    fee: cells[3],
+    effective: cells[4],
+    terminate: cells[5],
   };
 }

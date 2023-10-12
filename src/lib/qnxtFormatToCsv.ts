@@ -16,7 +16,7 @@ export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
     '2078-12-31',
     input.cpt, // maxcodeid
     input.fee, // feeamount
-    '', // location
+    input.pos, // location
     '', // provtype
     '', // specialty
     '', // typesrv

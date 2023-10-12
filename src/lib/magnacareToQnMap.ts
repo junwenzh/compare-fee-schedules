@@ -23,8 +23,15 @@ export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
     const formatted = formatSource(cells);
     const qnxtInputFormat = parseRow(formatted);
     qnxtInputFormat.forEach(record => {
-      const key = `${record.cpt}_${record.mod}`;
-      map.set(key, record);
+      const key = `${record.cpt}_${record.mod}_${record.pos}`;
+      if (map.has(key)) {
+        const val = map.get(key)!;
+        val.fee = `${val.fee}|${record.fee}`;
+        val.action = `${val.action}|Duplicate`;
+        map.set(key, val);
+      } else {
+        map.set(key, record);
+      }
     });
   });
 
@@ -51,6 +58,7 @@ function parseRow(row: SourceRow): QnxtInputFormat[] {
   const partial = {
     cpt: row.cpt,
     mod: row.mod,
+    pos: '',
     effective: row.effective,
     terminate: row.terminate,
   };

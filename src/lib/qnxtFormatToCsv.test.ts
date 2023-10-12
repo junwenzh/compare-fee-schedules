@@ -7,6 +7,7 @@ describe('qnxtInputToOutput', () => {
   const data: QnxtInputFormat = {
     cpt: '12345',
     mod: '',
+    pos: '',
     fee: '123.00',
     effective: '20200101',
     terminate: '',
