@@ -21,12 +21,12 @@ export function compareFeeSchedules(
     let srcFee = 0;
     let qnxtFee = 0;
     try {
-      srcFee = Math.floor(Number(v.fee) * 10 ** (decimals - 1));
+      srcFee = Math.floor(Number(v.fee) * 10 ** decimals);
     } catch (e) {
       console.log(e);
     }
     try {
-      qnxtFee = Math.floor(Number(t.fee) * 10 ** (decimals - 1));
+      qnxtFee = Math.floor(Number(t.fee) * 10 ** decimals);
     } catch (e) {
       console.log(e);
     }
