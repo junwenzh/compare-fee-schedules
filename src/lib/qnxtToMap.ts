@@ -6,6 +6,9 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
   const map = new Map<string, QnxtInputFormat>();
   const lines = csv.split('\n');
 
+  // remove header row
+  lines.shift();
+
   lines.forEach(line => {
     const cells = stringToInputFormat(line);
     const key = `${cells.cpt}_${cells.mod}_${cells.pos}`;

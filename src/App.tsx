@@ -23,7 +23,7 @@ const sourceTypes = [
 ];
 
 function App() {
-  const [sourceType, setSourceType] = useState('');
+  const [sourceType, setSourceType] = useState('code');
   const [srcPath, setSrcPath] = useState('');
   const [qnxtPath, setQnxtPath] = useState('');
   const [srcData, setSrcData] = useState('');
@@ -91,8 +91,7 @@ function App() {
   }
 
   return (
-    <main className="flex flex-col justify-center items-center">
-      <header className="my-8"></header>
+    <main className="flex flex-col justify-center items-center my-12">
       <SelectSource
         handleSelectChange={handleSelectChange}
         choices={sourceTypes}
