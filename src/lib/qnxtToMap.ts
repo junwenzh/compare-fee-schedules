@@ -12,7 +12,11 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
   lines.forEach(line => {
     const cells = stringToInputFormat(line);
     const key = `${cells.cpt}_${cells.mod}_${cells.pos}`;
-    map.set(key, cells);
+    if (map.has(key)) {
+      map.set(key, Object.assign({ action: 'Duplicate' }, cells));
+    } else {
+      map.set(key, cells);
+    }
   });
 
   return map;

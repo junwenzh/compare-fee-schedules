@@ -11,11 +11,16 @@ import { getCounts } from './lib/getCounts';
 import CountsTable from './components/CountsTable';
 import { SelectSource } from './components/SelectSource';
 import { SelectDecimals } from './components/SelectDecimals';
+import { facilityFormatToMap } from './lib/facilityFormatToMap';
 
 const sourceTypes = [
   {
-    label: 'Code, mod1, POS',
+    label: 'Code, Mod, POS',
     value: 'code',
+  },
+  {
+    label: 'Office, Facility',
+    value: 'facility',
   },
   {
     label: 'Magnacare',
@@ -36,6 +41,7 @@ function App() {
     update: 0,
     terminate: 0,
     pass: 0,
+    review: 0,
   });
 
   async function dropEventHandler(event: React.DragEvent) {
@@ -78,6 +84,9 @@ function App() {
       case 'code':
         src = qnxtToMap(srcData);
         break;
+      case 'facility':
+        src = facilityFormatToMap(srcData);
+        break;
       default:
         return;
     }
@@ -93,6 +102,7 @@ function App() {
       update: resultCounts.updated,
       terminate: resultCounts.terminated,
       pass: resultCounts.passed,
+      review: resultCounts.review,
     });
   }
 

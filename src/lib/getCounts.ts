@@ -6,13 +6,15 @@ type Counts = {
   updated: number;
   terminated: number;
   passed: number;
+  review: number;
 };
 
 export function getCounts(map: Map<string, QnxtInputFormat>): Counts {
   let added = 0,
     updated = 0,
     terminated = 0,
-    passed = 0;
+    passed = 0,
+    review = 0;
 
   map.forEach(v => {
     switch (v.action) {
@@ -28,6 +30,9 @@ export function getCounts(map: Map<string, QnxtInputFormat>): Counts {
       case 'Pass':
         passed += 1;
         break;
+      default:
+        review += 1;
+        break;
     }
   });
 
@@ -36,5 +41,6 @@ export function getCounts(map: Map<string, QnxtInputFormat>): Counts {
     updated,
     terminated,
     passed,
+    review,
   };
 }
