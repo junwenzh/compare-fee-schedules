@@ -40,7 +40,7 @@ export function compareFeeSchedules(
       effective: v.effective,
       terminate: v.terminate,
       action: '',
-      qnxtFee,
+      qnxtFee: t.fee,
     };
 
     if (srcFee !== qnxtFee) {
