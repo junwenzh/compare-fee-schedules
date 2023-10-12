@@ -18,15 +18,15 @@ export function compareFeeSchedules(
       return;
     }
 
-    let srcFee = 0;
-    let qnxtFee = 0;
+    let srcFee = '0';
+    let qnxtFee = '0';
     try {
-      srcFee = Math.floor(Number(v.fee) * 10 ** decimals);
+      srcFee = Number(v.fee).toFixed(decimals);
     } catch (e) {
       console.log(e);
     }
     try {
-      qnxtFee = Math.floor(Number(t.fee) * 10 ** decimals);
+      qnxtFee = Number(t.fee).toFixed(decimals);
     } catch (e) {
       console.log(e);
     }

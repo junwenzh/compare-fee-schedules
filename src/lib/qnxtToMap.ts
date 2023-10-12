@@ -21,9 +21,9 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
 function stringToInputFormat(text: string): QnxtInputFormat {
   const cells = text.split(',');
   return {
-    cpt: cells[0].trim(),
-    mod: cells[1].trim(),
-    pos: cells[2].trim(),
+    cpt: cells[0]?.trim(),
+    mod: cells[1]?.trim(),
+    pos: cells[2]?.trim(),
     fee: cells[3],
     effective: cells[4],
     terminate: cells[5],

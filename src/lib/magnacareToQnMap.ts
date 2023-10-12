@@ -41,8 +41,8 @@ export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
 // take a row from the source file and return a SourceRow object
 function formatSource(cells: string[]): SourceRow {
   return {
-    cpt: cells[0],
-    mod: cells[1],
+    cpt: cells[0]?.trim(),
+    mod: cells[1]?.trim(),
     effective: cells[2],
     terminate: cells[3],
     global: cells[4],
