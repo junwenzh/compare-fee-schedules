@@ -13,14 +13,18 @@ export type QnxtOutputFormat = [
   'specialtycode' | '',
   'typesrv' | '',
   'modcode2' | '',
-  'action' | string
+  'action' | string,
+  'source' | string | undefined,
+  'qnxt' | string | undefined
 ];
 
 export interface QnxtInputFormat {
   cpt: string;
   mod: string;
   pos: string;
-  fee: string;
+  fee?: string;
+  srcFee?: string;
+  qnxtFee?: string;
   effective: string;
   terminate: string;
   action?: string;

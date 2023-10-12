@@ -20,6 +20,7 @@ export function compareFeeSchedules(
 
     let srcFee = '0';
     let qnxtFee = '0';
+
     try {
       srcFee = Number(v.fee).toFixed(decimals);
     } catch (e) {
@@ -31,11 +32,24 @@ export function compareFeeSchedules(
       console.log(e);
     }
 
+    const combined = {
+      cpt: v.cpt,
+      mod: v.mod,
+      pos: v.pos,
+      effective: v.effective,
+      terminate: v.terminate,
+      action: '',
+      srcFee,
+      qnxtFee,
+    };
+
     if (srcFee !== qnxtFee) {
-      result.set(k, Object.assign({ action: 'Update' }, v));
+      combined.action = 'Update';
     } else {
-      result.set(k, Object.assign({ action: 'Pass' }, v));
+      combined.action = 'Pass';
     }
+
+    result.set(k, combined);
 
     target.delete(k);
   });
