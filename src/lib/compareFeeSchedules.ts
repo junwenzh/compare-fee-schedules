@@ -2,7 +2,8 @@ import { QnxtInputFormat } from '@/types/QnxtFormat';
 
 export function compareFeeSchedules(
   source: Map<string, QnxtInputFormat>,
-  target: Map<string, QnxtInputFormat>
+  target: Map<string, QnxtInputFormat>,
+  decimals: number
 ): Map<string, QnxtInputFormat> {
   const result: Map<string, QnxtInputFormat> = new Map();
 
@@ -17,7 +18,20 @@ export function compareFeeSchedules(
       return;
     }
 
-    if (v.fee !== t.fee) {
+    let srcFee = 0;
+    let qnxtFee = 0;
+    try {
+      srcFee = Math.floor(Number(v.fee) * 10 ** (decimals - 1));
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      qnxtFee = Math.floor(Number(t.fee) * 10 ** (decimals - 1));
+    } catch (e) {
+      console.log(e);
+    }
+
+    if (srcFee !== qnxtFee) {
       result.set(k, Object.assign({ action: 'Update' }, v));
     } else {
       result.set(k, Object.assign({ action: 'Pass' }, v));

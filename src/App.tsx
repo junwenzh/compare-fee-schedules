@@ -10,6 +10,7 @@ import { createBlobUrl } from './lib/createBlobUrl';
 import { getCounts } from './lib/getCounts';
 import CountsTable from './components/CountsTable';
 import { SelectSource } from './components/SelectSource';
+import { SelectDecimals } from './components/SelectDecimals';
 
 const sourceTypes = [
   {
@@ -24,6 +25,7 @@ const sourceTypes = [
 
 function App() {
   const [sourceType, setSourceType] = useState('code');
+  const [decimals, setDecimals] = useState('4');
   const [srcPath, setSrcPath] = useState('');
   const [qnxtPath, setQnxtPath] = useState('');
   const [srcData, setSrcData] = useState('');
@@ -63,6 +65,10 @@ function App() {
     setSourceType(value);
   }
 
+  function handleDecimalChange(value: string) {
+    setDecimals(value);
+  }
+
   function handleCompareClick() {
     let src;
     switch (sourceType) {
@@ -76,7 +82,7 @@ function App() {
         return;
     }
     const qnxt = qnxtToMap(qnxtData);
-    const result = compareFeeSchedules(src, qnxt);
+    const result = compareFeeSchedules(src, qnxt, Number(decimals));
     const resultCounts = getCounts(result);
     const csv = inputMapToCsv(result);
     const url = createBlobUrl(csv);
@@ -92,24 +98,32 @@ function App() {
 
   return (
     <main className="flex flex-col justify-center items-center my-12">
-      <SelectSource
-        handleSelectChange={handleSelectChange}
-        choices={sourceTypes}
-      />
-      <Dropzone
-        id="srcFile"
-        title="Source File"
-        description="Drop the source file below"
-        path={srcPath}
-        dropHandler={dropEventHandler}
-      />
-      <Dropzone
-        id="qnxtFile"
-        title="QNXT File"
-        description="Drop the QNXT file below"
-        path={qnxtPath}
-        dropHandler={dropEventHandler}
-      />
+      <section className="flex flex-row justify-center items-center">
+        <SelectSource
+          handleSelectChange={handleSelectChange}
+          choices={sourceTypes}
+        />
+        <SelectDecimals
+          handleDecimalChange={handleDecimalChange}
+          choices={['1', '2', '3', '4', '5', '6']}
+        />
+      </section>
+      <section className="flex flex-row justify-center items-center">
+        <Dropzone
+          id="srcFile"
+          title="Source File"
+          description="Drop the source file below"
+          path={srcPath}
+          dropHandler={dropEventHandler}
+        />
+        <Dropzone
+          id="qnxtFile"
+          title="QNXT File"
+          description="Drop the QNXT file below"
+          path={qnxtPath}
+          dropHandler={dropEventHandler}
+        />
+      </section>
       {srcPath && qnxtPath && (
         <Button variant="outline" onClick={handleCompareClick}>
           Compare Fee Schedules
