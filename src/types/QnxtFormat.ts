@@ -14,7 +14,6 @@ export type QnxtOutputFormat = [
   'typesrv' | '',
   'modcode2' | '',
   'action' | string,
-  'source' | string | undefined,
   'qnxt' | string | undefined
 ];
 
@@ -22,8 +21,7 @@ export interface QnxtInputFormat {
   cpt: string;
   mod: string;
   pos: string;
-  fee?: string;
-  srcFee?: string;
+  fee: string;
   qnxtFee?: string;
   effective: string;
   terminate: string;

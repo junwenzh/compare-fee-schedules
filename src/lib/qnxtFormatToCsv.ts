@@ -15,14 +15,13 @@ export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
     '', // medcoverage
     '2078-12-31',
     input.cpt, // maxcodeid
-    input.srcFee!, // feeamount
+    input.fee, // feeamount
     input.pos, // location
     '', // provtype
     '', // specialty
     '', // typesrv
     '', // modcode2
     input.action || '',
-    input.srcFee,
     input.qnxtFee,
   ];
 }
@@ -50,7 +49,6 @@ function qnxtOutputToCsv(array: QnxtOutputFormat[]) {
     'typesrv',
     'modcode2',
     'action',
-    'source',
     'qnxt',
   ];
   return headers.join(',').concat('\n', csv);

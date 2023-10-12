@@ -36,10 +36,10 @@ export function compareFeeSchedules(
       cpt: v.cpt,
       mod: v.mod,
       pos: v.pos,
+      fee: v.fee,
       effective: v.effective,
       terminate: v.terminate,
       action: '',
-      srcFee,
       qnxtFee,
     };
 
