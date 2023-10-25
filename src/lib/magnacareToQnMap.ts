@@ -35,6 +35,8 @@ export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
     });
   });
 
+  // console.log(map);
+
   return map;
 }
 
@@ -72,10 +74,12 @@ function parseRow(row: SourceRow): QnxtInputFormat[] {
   if (row.professional !== '0' || row.technical !== '0') {
     const professional = Object.assign({}, partial, {
       fee: row.professional,
+      mod: '26',
     });
 
     const technical = Object.assign({}, partial, {
       fee: row.technical,
+      mod: 'TC',
     });
     results.push(professional, technical);
   }

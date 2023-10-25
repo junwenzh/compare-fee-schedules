@@ -19,6 +19,8 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
     }
   });
 
+  // console.log(map);
+
   return map;
 }
 
