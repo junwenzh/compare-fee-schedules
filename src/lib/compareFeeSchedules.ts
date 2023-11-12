@@ -9,10 +9,8 @@ export function compareFeeSchedules(
 
   source.forEach((v, k) => {
     const t = target.get(k);
-    // if not in target (qnxt), flag as add
-    // if in target, check rates
-    // if rate is different, flag as update
-    // else flag as pass
+
+    // if the target doesn't have the key, add it
     if (!t) {
       result.set(k, Object.assign({ action: 'Add' }, v));
       return;
@@ -21,11 +19,13 @@ export function compareFeeSchedules(
     let srcFee = '0';
     let qnxtFee = '0';
 
+    // try to parse the fee as a number
     try {
       srcFee = Number(v.fee).toFixed(decimals);
     } catch (e) {
       console.log(e);
     }
+
     try {
       qnxtFee = Number(t.fee).toFixed(decimals);
     } catch (e) {
@@ -43,9 +43,11 @@ export function compareFeeSchedules(
       qnxtFee: t.fee,
     };
 
+    // if the fees are different, flag as update
     if (srcFee !== qnxtFee) {
       combined.action = 'Update';
     } else {
+      // otherwise, flag as pass
       combined.action = 'Pass';
     }
 

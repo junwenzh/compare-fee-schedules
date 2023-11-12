@@ -18,19 +18,32 @@ export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
   lines.shift();
   // build a map of QnxtInputFormat for comparison
   const map = new Map<string, QnxtInputFormat>();
+  // iterate over each line
   lines.forEach(line => {
     const cells = line.split(',');
     const formatted = formatSource(cells);
     const qnxtInputFormat = parseRow(formatted);
+
     qnxtInputFormat.forEach(record => {
-      const key = `${record.cpt}_${record.mod}_${record.pos}`;
+      // remove NU from mod and sort ascending
+      const mod =
+        record.mod
+          .replace('NU', '')
+          .match(/.{1,2}/g)
+          ?.sort((a, b) => (a > b ? 1 : -1))
+          .join('') || '';
+
+      const key = `${record.cpt}_${mod}_${record.pos}`;
+
+      // if the key exists, there's a duplicate entry
       if (map.has(key)) {
         const val = map.get(key)!;
         val.fee = `${val.fee}|${record.fee}`;
         val.action = `${val.action}|Duplicate`;
         map.set(key, val);
       } else {
-        map.set(key, record);
+        // otherwise, add the record to the map
+        map.set(key, Object.assign({}, record, { mod: mod }));
       }
     });
   });

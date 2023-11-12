@@ -11,10 +11,19 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
 
   lines.forEach(line => {
     const cells = stringToInputFormat(line);
-    const key = `${cells.cpt}_${cells.mod}_${cells.pos}`;
+    const mod =
+      cells.mod
+        .replace('NU', '')
+        .match(/.{1,2}/g)
+        ?.sort((a, b) => (a > b ? 1 : -1))
+        .join('') || '';
+    const key = `${cells.cpt}_${mod}_${cells.pos}`;
+
+    // if the key exists, there's a duplicate entry
     if (map.has(key)) {
       map.set(key, Object.assign({ action: 'Duplicate' }, cells));
     } else {
+      // otherwise, add the record to the map
       map.set(key, cells);
     }
   });

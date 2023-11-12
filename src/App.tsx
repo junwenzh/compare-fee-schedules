@@ -108,7 +108,7 @@ function App() {
 
   return (
     <main className="flex flex-col justify-center items-center my-12">
-      <section className="flex flex-row justify-center items-center">
+      <section className="flex flex-row justify-center items-center gap-6">
         <SelectSource
           handleSelectChange={handleSelectChange}
           choices={sourceTypes}
@@ -118,7 +118,7 @@ function App() {
           choices={['1', '2', '3', '4', '5', '6']}
         />
       </section>
-      <section className="flex flex-row justify-center items-center">
+      <section className="flex flex-row justify-center items-center gap-4">
         <Dropzone
           id="srcFile"
           title="Source File"
