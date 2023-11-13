@@ -12,6 +12,7 @@ import CountsTable from './components/CountsTable';
 import { SelectSource } from './components/SelectSource';
 import { SelectDecimals } from './components/SelectDecimals';
 import { facilityFormatToMap } from './lib/facilityFormatToMap';
+import Template from './components/Template';
 
 const sourceTypes = [
   {
@@ -117,6 +118,9 @@ function App() {
           handleDecimalChange={handleDecimalChange}
           choices={['1', '2', '3', '4', '5', '6']}
         />
+      </section>
+      <section>
+        <Template />
       </section>
       <section className="flex flex-row justify-center items-center gap-4">
         <Dropzone
