@@ -22,6 +22,7 @@ export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
   const map = new Map<string, QnxtInputFormat>();
   // iterate over each line
   lines.forEach(line => {
+    if (line === '') return;
     const cells = line.split(',');
     const formatted = formatSource(cells);
     const qnxtInputFormat = parseRow(formatted);
