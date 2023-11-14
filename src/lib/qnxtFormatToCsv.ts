@@ -1,10 +1,15 @@
 import { QnxtInputFormat, QnxtOutputFormat } from '@/types/QnxtFormat';
 
 export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
-  const effective = `${input.effective.slice(0, 4)}-${input.effective.slice(
-    4,
-    6
-  )}-${input.effective.slice(6, 8)}`;
+  // const effective = `${input.effective.slice(0, 4)}-${input.effective.slice(
+  //   4,
+  //   6
+  // )}-${input.effective.slice(6, 8)}`;
+  const effectiveArr = input.effective.split('/');
+  const effective = `${effectiveArr[2].padStart(
+    2,
+    '0'
+  )}-${effectiveArr[0].padStart(2, '0')}-${effectiveArr[1]}`;
 
   return [
     'CPT',

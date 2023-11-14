@@ -33,6 +33,9 @@ export function facilityFormatToMap(csv: string): Map<string, QnxtInputFormat> {
   if (lines.length === 1) lines = csv.split('\n');
   if (lines.length === 1) lines = csv.split('\r');
 
+  // skip the first line
+  lines.shift();
+
   const results: Map<string, QnxtInputFormat> = new Map();
 
   lines.forEach(line => {
