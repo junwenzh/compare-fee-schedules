@@ -76,7 +76,10 @@ export function facilityFormatToMap(csv: string): Map<string, QnxtInputFormat> {
     if (input.office !== input.facility && input.facility !== '') {
       facilityPos.forEach(pos => {
         const key = `${input.cpt}_${input.mod}_${pos}`;
-        results.set(key, Object.assign({ fee: input.facility }, partial));
+        results.set(
+          key,
+          Object.assign({ fee: input.facility }, partial, { pos })
+        );
       });
     }
   });
