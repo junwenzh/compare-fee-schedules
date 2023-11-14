@@ -58,10 +58,14 @@ export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
 
 // take a row from the source file and return a SourceRow object
 function formatSource(cells: string[]): SourceRow {
+  const effective = `${cells[2].slice(4, 6)}/${cells[2].slice(
+    6,
+    8
+  )}/${cells[2].slice(0, 4)}`;
   return {
     cpt: cells[0]?.trim(),
     mod: cells[1]?.trim(),
-    effective: cells[2],
+    effective: effective,
     terminate: cells[3],
     global: cells[4],
     professional: cells[5],
