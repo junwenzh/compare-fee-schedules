@@ -22,7 +22,9 @@ export function SelectDecimals({
       </SelectTrigger>
       <SelectContent>
         {choices.map(choice => (
-          <SelectItem value={choice}>{choice}</SelectItem>
+          <SelectItem value={choice} key={choice}>
+            {choice}
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>

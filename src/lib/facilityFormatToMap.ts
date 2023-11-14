@@ -28,10 +28,16 @@ const facilityPos = [
 ];
 
 export function facilityFormatToMap(csv: string): Map<string, QnxtInputFormat> {
-  const lines = csv.replaceAll('/r', '').split('/n');
+  let lines;
+  lines = csv.split('\r\n');
+  if (lines.length === 1) lines = csv.split('\n');
+  if (lines.length === 1) lines = csv.split('\r');
+
   const results: Map<string, QnxtInputFormat> = new Map();
 
   lines.forEach(line => {
+    if (line === '') return;
+
     const cells = line.split(',');
 
     const mod =

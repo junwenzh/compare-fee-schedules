@@ -13,7 +13,9 @@ type SourceRow = {
 // take a source string and return an array in the qnxt output format
 export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
   // split the csv into array of lines
-  const lines = csv.replaceAll('\r', '').split('\n');
+  let lines = csv.split('\r\n');
+  if (lines.length === 1) lines = csv.split('\n');
+  if (lines.length === 1) lines = csv.split('\r');
   // skip first line
   lines.shift();
   // build a map of QnxtInputFormat for comparison

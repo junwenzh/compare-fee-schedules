@@ -25,7 +25,9 @@ export function SelectSource({
       </SelectTrigger>
       <SelectContent>
         {choices.map(choice => (
-          <SelectItem value={choice.value}>{choice.label}</SelectItem>
+          <SelectItem value={choice.value} key={choice.value}>
+            {choice.label}
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>

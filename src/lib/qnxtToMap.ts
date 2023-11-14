@@ -4,12 +4,16 @@ import { QnxtInputFormat } from '@/types/QnxtFormat';
 
 export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
   const map = new Map<string, QnxtInputFormat>();
-  const lines = csv.split('\n');
+  let lines;
+  lines = csv.split('\r\n');
+  if (lines.length === 1) lines = csv.split('\n');
+  if (lines.length === 1) lines = csv.split('\r');
 
   // remove header row
   lines.shift();
 
   lines.forEach(line => {
+    if (line === '') return;
     const cells = stringToInputFormat(line);
     const mod =
       cells.mod

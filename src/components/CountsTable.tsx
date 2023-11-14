@@ -25,7 +25,7 @@ export default function CountsTable({ rows }: CountsTableProps) {
       </TableHeader>
       <TableBody>
         {rows.map(row => (
-          <TableRow>
+          <TableRow key={row.label}>
             <TableCell className="font-medium">{row.label}</TableCell>
             <TableCell className="text-right">{row.value}</TableCell>
           </TableRow>
