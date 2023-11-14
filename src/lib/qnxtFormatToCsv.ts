@@ -11,11 +11,20 @@ export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
     '0'
   )}-${effectiveArr[0].padStart(2, '0')}-${effectiveArr[1]}`;
 
+  // correct the modifiers to remove NU and sort
+  const mod = input.mod
+    .replace('NU', '')
+    .match(/.{1,2}/g)
+    ?.sort((a, b) => (a > b ? 1 : -1));
+
+  const mod1 = mod?.[0] || '';
+  const mod2 = mod?.[1] || '';
+
   return [
     'CPT',
     effective,
     input.cpt,
-    input.mod,
+    mod1,
     '', // carelevel
     '', // medcoverage
     '2078-12-31',
@@ -25,7 +34,7 @@ export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
     '', // provtype
     '', // specialty
     '', // typesrv
-    '', // modcode2
+    mod2, // modcode2
     input.action || '',
     input.qnxtFee,
   ];

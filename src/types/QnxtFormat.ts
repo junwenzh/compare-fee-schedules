@@ -12,7 +12,7 @@ export type QnxtOutputFormat = [
   'provtype' | '',
   'specialtycode' | '',
   'typesrv' | '',
-  'modcode2' | '',
+  'modcode2' | string,
   'action' | string,
   'qnxt' | string | undefined
 ];
