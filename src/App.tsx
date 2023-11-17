@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import Dropzone from './components/Dropzone';
-import { Button } from './components/ui/button';
+import Dropzone from '@/components/Dropzone';
+import { Button } from '@/components/ui/button';
 
-import { magnacareToQnMap } from './lib/magnacareToQnMap';
-import { qnxtToMap } from './lib/qnxtToMap';
-import { compareFeeSchedules } from './lib/compareFeeSchedules';
-import { inputMapToCsv } from './lib/qnxtFormatToCsv';
-import { createBlobUrl } from './lib/createBlobUrl';
-import { getCounts } from './lib/getCounts';
-import CountsTable from './components/CountsTable';
-import { SelectSource } from './components/SelectSource';
-import { SelectDecimals } from './components/SelectDecimals';
-import { facilityFormatToMap } from './lib/facilityFormatToMap';
-import Template from './components/Template';
+import { magnacareToQnMap } from '@/lib/csvToMap/magnacareToQnMap';
+import { qnxtToMap } from '@/lib/csvToMap/qnxtToMap';
+import { facilityFormatToMap } from '@/lib/csvToMap/facilityFormatToMap';
+import { compareFeeSchedules } from '@/lib/compareFeeSchedules';
+import { inputMapToCsv } from '@/lib/mapToCsv/qnxtFormatToCsv';
+import { createBlobUrl } from '@/lib/createBlobUrl';
+import { getCounts } from '@/lib/getCounts';
+import CountsTable from '@/components/CountsTable';
+import { SelectSource } from '@/components/SelectSource';
+import { SelectDecimals } from '@/components/SelectDecimals';
+import Template from '@/components/Template';
 
 const sourceTypes = [
   {

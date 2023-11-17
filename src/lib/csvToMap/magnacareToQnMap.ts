@@ -28,10 +28,9 @@ export function magnacareToQnMap(csv: string): Map<string, QnxtInputFormat> {
     const qnxtInputFormat = parseRow(formatted);
 
     qnxtInputFormat.forEach(record => {
-      // remove NU from mod and sort ascending
+      // sort mods ascending
       const mod =
         record.mod
-          .replace('NU', '')
           .match(/.{1,2}/g)
           ?.sort((a, b) => (a > b ? 1 : -1))
           .join('') || '';

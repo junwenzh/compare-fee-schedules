@@ -11,12 +11,8 @@ export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
     '0'
   )}-${effectiveArr[0].padStart(2, '0')}-${effectiveArr[1]}`;
 
-  // correct the modifiers to remove NU and sort
-  const mod = input.mod
-    .replace('NU', '')
-    .match(/.{1,2}/g)
-    ?.sort((a, b) => (a > b ? 1 : -1));
-
+  // split the modifer into two parts
+  const mod = input.mod.match(/.{1,2}/g);
   const mod1 = mod?.[0] || '';
   const mod2 = mod?.[1] || '';
 

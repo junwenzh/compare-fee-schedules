@@ -25,10 +25,10 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
 
     // if the key exists, there's a duplicate entry
     if (map.has(key)) {
-      map.set(key, Object.assign({ action: 'Duplicate' }, cells));
+      map.set(key, Object.assign({ action: 'Duplicate' }, cells, { mod }));
     } else {
       // otherwise, add the record to the map
-      map.set(key, cells);
+      map.set(key, Object.assign(cells, { mod }));
     }
   });
 
