@@ -107,6 +107,21 @@ function App() {
     });
   }
 
+  const handleRestartClick = () => {
+    setSrcPath('');
+    setQnxtPath('');
+    setSrcData('');
+    setQnxtData('');
+    setDownloadUrl('');
+    setCounts({
+      add: 0,
+      update: 0,
+      terminate: 0,
+      pass: 0,
+      review: 0,
+    });
+  };
+
   return (
     <main className="flex flex-col justify-center items-center my-12">
       <section className="flex flex-row justify-center items-center gap-6">
@@ -148,6 +163,11 @@ function App() {
           <a href={downloadUrl} download="output.csv">
             Download Output
           </a>
+        </Button>
+      )}
+      {downloadUrl && (
+        <Button variant="outline" className="my-4" onClick={handleRestartClick}>
+          Restart
         </Button>
       )}
       <section className="w-72">
