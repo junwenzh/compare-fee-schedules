@@ -46,6 +46,8 @@ export function compareFeeSchedules(
     // if the fees are different, flag as update
     if (srcFee !== qnxtFee) {
       combined.action = 'Update';
+    } else if (v.action === 'Duplicate' || t.action === 'Duplicate') {
+      combined.action = 'Duplicate';
     } else {
       // otherwise, flag as pass
       combined.action = 'Pass';

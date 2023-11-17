@@ -17,7 +17,6 @@ export function qnxtToMap(csv: string): Map<string, QnxtInputFormat> {
     const cells = stringToInputFormat(line);
     const mod =
       cells.mod
-        .replace('NU', '')
         .match(/.{1,2}/g)
         ?.sort((a, b) => (a > b ? 1 : -1))
         .join('') || '';
