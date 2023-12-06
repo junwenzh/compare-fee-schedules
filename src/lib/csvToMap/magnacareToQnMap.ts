@@ -76,6 +76,11 @@ function formatSource(cells: string[]): SourceRow {
 function parseRow(row: SourceRow): QnxtInputFormat[] {
   const results: QnxtInputFormat[] = [];
 
+  // if row.professional is blank, replace with '0'
+  if (row.professional === '') row.professional = '0';
+  // if row.technical is blank, replace with '0'
+  if (row.technical === '') row.technical = '0';
+
   const partial = {
     cpt: row.cpt,
     mod: row.mod,

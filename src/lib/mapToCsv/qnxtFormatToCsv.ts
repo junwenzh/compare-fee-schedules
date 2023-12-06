@@ -42,7 +42,6 @@ export function qnxtInputToOutput(input: QnxtInputFormat): QnxtOutputFormat {
 function qnxtOutputToCsv(array: QnxtOutputFormat[]) {
   // join each line with \n
   const lines = array.map(line => line.join(','));
-  console.log(lines);
   // join each cell with ,
   const csv = lines.join('\n');
   // add the header
